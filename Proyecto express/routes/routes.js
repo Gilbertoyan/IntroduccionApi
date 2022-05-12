@@ -49,9 +49,18 @@ app.put('/users/:id', (request, response) => {
     });
 });
 
+//eliminar un  usuario
+app.get('/users/:id', (request, response) => { 
+    const id= request.params.id;
 
+    pool.query('DELETED FROM users WHERE id = ? ', id, (error, result) => { 
+        if(error) throw error;
 
-
-
+        response.send('User deleted');
+    });
+});
 
 }
+
+//exportar el router
+module.exports = router;
